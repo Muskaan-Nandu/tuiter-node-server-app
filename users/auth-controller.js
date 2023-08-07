@@ -46,14 +46,16 @@ const AuthController = (app) => {
         const user = {username, password, firstName, lastName};
         const updatedUser = usersDao.updateUser(_id, user);
         console.log("update 2", updatedUser);
-        return updatedUser;
+        req.session["currentUser"] = updatedUser;
+        res.json(updatedUser);
      };
      
+ app.put ("/api/users",          update);
  app.post("/api/users/register", register);
  app.post("/api/users/login",    login);
  app.post("/api/users/profile",  profile);
  app.post("/api/users/logout",   logout);
- app.put ("/api/users",          update);
+
 };
 
 export default AuthController;
