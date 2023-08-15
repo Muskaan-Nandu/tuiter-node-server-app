@@ -7,6 +7,11 @@ import session from "express-session";
 import AuthController
  from './users/auth-controller.js';
 import cors from 'cors'
+import mongoose from "mongoose";
+
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+mongoose.connect(CONNECTION_STRING);
+
 const app = express()
 app.use(
     cors({
